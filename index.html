@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="el" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Σοφία Διαμαντοπούλου | Ψυχολόγος - Ψυχοθεραπεύτρια</title>
+    <meta name="description" content="Σύγχρονη Ψυχοθεραπεία με Επιστημονική Εγκυρότητα & Ενσυναίσθηση. Γνωσιακή Συμπεριφορική Ψυχοθεραπεία (CBT) στο Μέγαρο Μουσικής.">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>Ψ</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Manrope"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#2D2D2D',
+                        secondary: '#8D7B68',
+                        accent: '#C8B6A6',
+                        sand: '#F9F7F2',
+                        terracotta: '#6B5B54', 
+                        surface: '#FFFFFF',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background-color: #F9F7F2;
+            color: #2D2D2D;
+            cursor: none;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F9F7F2; }
+        ::-webkit-scrollbar-thumb { background: #8D7B68; border-radius: 4px; }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: #2D2D2D; }
+        .cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid #8D7B68;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        body:hover .cursor-outline { opacity: 1; }
+        body.hovering .cursor-outline {
+            width: 60px; height: 60px;
+            background-color: rgba(141, 123, 104, 0.1);
+            border-color: transparent;
+            backdrop-filter: blur(2px);
+        }
+
+        .text-balance { text-wrap: balance; }
+        .greek-caps { text-transform: uppercase; }
+
+        /* Animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+            animation: scroll 20s linear infinite;
+        }
+
+        .service-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02); }
+
+        .modal { transition: opacity 0.3s ease; }
+        .modal.open { display: flex; opacity: 1; }
+    </style>
+</head>
+<body class="antialiased selection:bg-secondary selection:text-white relative">
+
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 bg-transparent backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="group relative z-50 cursor-pointer flex items-center gap-4" onmouseenter="addHover()" onmouseleave="removeHover()">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMsSfLtAJD04KqngQfad1kcvYVjxdLx46d4W1ko=s1360-w1360-h1020" class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border border-secondary/30 shadow-sm" alt="Portrait">
+                <div class="flex flex-col">
+                    <div class="font-serif text-lg md:text-xl font-bold text-primary tracking-widest greek-caps group-hover:text-terracotta transition-colors duration-300 drop-shadow-sm">
+                        ΣΟΦΙΑ ΔΙΑΜΑΝΤΟΠΟΥΛΟΥ
+                    </div>
+                    <div class="text-[0.6rem] md:text-xs tracking-[0.2em] uppercase text-secondary font-medium mt-0.5">
+                        ΨΥΧΟΛΟΓΟΣ - ΨΥΧΟΘΕΡΑΠΕΥΤΡΙΑ
+                    </div>
+                </div>
+            </a>
+            
+            <div class="hidden lg:flex gap-8 items-center">
+                <a href="#about" class="text-sm tracking-widest uppercase hover:text-terracotta transition-colors greek-caps" onmouseenter="addHover()" onmouseleave="removeHover()">ΒΙΟΓΡΑΦΙΚΟ</a>
+                <a href="#services" class="text-sm tracking-widest uppercase hover:text-terracotta transition-colors greek-caps" onmouseenter="addHover()" onmouseleave="removeHover()">ΥΠΗΡΕΣΙΕΣ</a>
+                <a href="#reviews" class="text-sm tracking-widest uppercase hover:text-terracotta transition-colors greek-caps" onmouseenter="addHover()" onmouseleave="removeHover()">ΚΡΙΤΙΚΕΣ</a>
+                <a href="https://www.doctoranytime.gr/d/Psychologos/diamantopoulou-sofia-2?autobook=1&acdpid=78672&autobook-dpid=78672&utm_source=gmb&utm_medium=organic&utm_campaign=actionscenter&hl=en-GR" target="_blank" 
+                   class="bg-secondary text-white px-6 py-3 rounded-full text-xs tracking-widest uppercase hover:bg-terracotta transition-all duration-300 transform hover:scale-105 shadow-lg greek-caps"
+                   onmouseenter="addHover()" onmouseleave="removeHover()">
+                   ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="lg:hidden text-primary z-50" onmouseenter="addHover()" onmouseleave="removeHover()">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-sand z-40 transform translate-x-full transition-transform duration-500 flex flex-col justify-center items-center gap-8 lg:hidden">
+        <a href="#about" class="text-2xl font-serif text-primary greek-caps" onclick="closeMenu()">ΒΙΟΓΡΑΦΙΚΟ</a>
+        <a href="#services" class="text-2xl font-serif text-primary greek-caps" onclick="closeMenu()">ΥΠΗΡΕΣΙΕΣ</a>
+        <a href="#reviews" class="text-2xl font-serif text-primary greek-caps" onclick="closeMenu()">ΚΡΙΤΙΚΕΣ</a>
+        <a href="https://www.doctoranytime.gr/d/Psychologos/diamantopoulou-sofia-2?autobook=1&acdpid=78672&autobook-dpid=78672&utm_source=gmb&utm_medium=organic&utm_campaign=actionscenter&hl=en-GR" target="_blank" class="text-xl bg-secondary text-white px-8 py-3 rounded-full greek-caps">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</a>
+    </div>
+
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-sand/95 via-sand/80 to-transparent z-10"></div>
+            <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433986bac24b7d3f60eae.webp" 
+                 class="w-full h-full object-cover object-center scale-105 transition-transform duration-1000" 
+                 alt="Psychology Office Background">
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
+            <div class="max-w-3xl fade-in-section space-y-6">
+                <div class="inline-block border-l-4 border-terracotta pl-4">
+                     <p class="text-secondary font-medium tracking-[0.2em] text-sm md:text-base greek-caps mb-2">
+                        ΨΥΧΟΛΟΓΟΣ - ΨΥΧΟΘΕΡΑΠΕΥΤΡΙΑ
+                     </p>
+                </div>
+                <h1 class="font-serif text-4xl md:text-5xl lg:text-7xl leading-[1.2]">
+                    <span class="block greek-caps text-black font-bold">ΓΝΩΣΙΑΚΗ ΣΥΜΠΕΡΙΦΟΡΙΚΗ ΨΥΧΟΘΕΡΑΠΕΙΑ</span>
+                    <span class="block text-2xl md:text-4xl mt-4 font-light greek-caps text-[#6B5B54]">με επιστημονική εγκυρότητα & ενσυναίσθηση</span>
+                </h1>
+
+                <div class="pt-8 flex flex-wrap gap-4">
+                    <a href="https://www.doctoranytime.gr/d/Psychologos/diamantopoulou-sofia-2?autobook=1&acdpid=78672&autobook-dpid=78672&utm_source=gmb&utm_medium=organic&utm_campaign=actionscenter&hl=en-GR" 
+                       target="_blank"
+                       class="group bg-secondary text-white px-8 py-4 rounded-full text-sm tracking-widest transition-all duration-300 hover:bg-terracotta shadow-xl hover:shadow-2xl flex items-center gap-3 greek-caps"
+                       onmouseenter="addHover()" onmouseleave="removeHover()">
+                        <span>ΚΛΕΙΣΤΕ ΣΥΝΕΔΡΙΑ</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#about" 
+                       class="border border-primary/30 px-8 py-4 rounded-full text-sm tracking-widest text-primary hover:bg-white/50 transition-all greek-caps"
+                       onmouseenter="addHover()" onmouseleave="removeHover()">
+                        ΜΑΘΕΤΕ ΠΕΡΙΣΣΟΤΕΡΑ
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="text-primary/50 w-8 h-8"></i>
+        </div>
+    </header>
+
+    <section id="about" class="py-24 px-6 md:px-12 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-12 gap-16 items-start">
+                
+                <div class="lg:col-span-5 relative fade-in-section">
+                    <div class="relative z-10 rounded-2xl overflow-hidden shadow-xl aspect-[3/4]">
+                        <img src="https://raw.githubusercontent.com/agelmet/SOFIA/refs/heads/main/bio%20sof.jpg" alt="Σοφία Διαμαντοπούλου" class="w-full h-full object-cover">
+                    </div>
+                    <h2 class="absolute -top-20 -left-20 text-[10rem] font-serif text-sand -z-0 opacity-50 select-none greek-caps">ΣΟΦΙΑ</h2>
+                </div>
+
+                <div class="lg:col-span-7 space-y-8 fade-in-section">
+                    <div class="flex items-center gap-4">
+                        <span class="h-px w-12 bg-terracotta"></span>
+                        <span class="text-terracotta tracking-widest text-sm font-bold greek-caps">ΣΧΕΤΙΚΑ ΜΕ ΕΜΕΝΑ</span>
+                    </div>
+                    
+                    <h2 class="font-serif text-4xl md:text-5xl text-primary leading-tight">
+                        <span class="greek-caps">ΒΙΟΓΡΑΦΙΚΟ</span>
+                    </h2>
+                    
+                    <div class="space-y-6 text-primary/80 font-light leading-relaxed text-lg text-justify">
+                        <p>
+                            Η Διαμαντοπούλου Σοφία είναι ψυχολόγος - ψυχοθεραπεύτρια. Κατέχει άδεια ασκήσεως επαγγέλματος με αριθμό πρωτοκόλλου 1282/13-3-2020 και είναι τακτικό μέλος του Συλλόγου Ελλήνων Ψυχολόγων (ΣΕΨ) από το 2020.
+                        </p>
+                        <p>
+                            Είναι απόφοιτη του τμήματος Ψυχολογίας του Παντείου Πανεπιστημίου Αθηνών και εξειδικεύεται στην Κλινική Ψυχική Υγεία μέσω μεταπτυχιακών σπουδών στην Ιατρική σχολή του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης. Έχει ολοκληρώσει την ψυχοθεραπευτική της εξειδίκευση πάνω στην Γνωσιακή Συμπεριφοριστική Ψυχοθεραπεία (CBT) στο Ινστιτούτο Έρευνας και Θεραπείας της Συμπεριφοράς (ΙΕΘΣ) ενώ πηγαίνοντας την επιστήμη ένα βήμα παραπέρα έχει εκπαιδευτεί και στις θεραπείες 'Τρίτου Κύματος' και συγκεκριμένα στη Θεραπεία Εστιασμένη στη Συμπόνια (CFT) και στη Θεραπεία Αποδοχής και Δέσμευσης (ACT).
+                        </p>
+                        <p>
+                            Η εμπειρία της έχει σφυρηλατηθεί σε απαιτητικά κλινικά περιβάλλοντα όπως το Ψυχιατρικό Τμήμα του Γ.Ν.Α. 'Γ. Γεννηματάς', το Ψυχιατρικό Νοσοκομείο Αττικής 'ΔΑΦΝΙ' και το Τμήμα Θεραπειών Ενηλίκων του Ινστιτούτου Έρευνας και Θεραπείας Συμπεριφοράς ενώ στο παρόν διατηρεί ιδιωτικό γραφείο στο Μέγαρο Μουσικής.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 overflow-hidden relative fade-in-section pt-10">
+                <div class="flex whitespace-nowrap animate-scroll items-center gap-16 w-max opacity-80 hover:opacity-100 transition-opacity">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69917299899b88371abb42a1.jpg" class="h-20 object-contain mix-blend-multiply" alt="Πάντειο">
+                    <img src="https://raw.githubusercontent.com/agelmet/SOFIA/main/apth.jpg" class="h-20 object-contain mix-blend-multiply" alt="ΑΠΘ">
+                    <img src="https://raw.githubusercontent.com/agelmet/SOFIA/refs/heads/main/seps.jpg" class="h-20 object-contain mix-blend-multiply" alt="ΣΕΨ">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6991729a0084982bf3a1775e.jpg" class="h-20 object-contain mix-blend-multiply" alt="ΙΕΘΣ">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6991729936a3920c36632d8c.jpg" class="h-20 object-contain mix-blend-multiply" alt="Εταιρεία Γνωσιακών">
+                    
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69917299899b88371abb42a1.jpg" class="h-20 object-contain mix-blend-multiply" alt="Πάντειο">
+                    <img src="https://raw.githubusercontent.com/agelmet/SOFIA/main/apth.jpg" class="h-20 object-contain mix-blend-multiply" alt="ΑΠΘ">
+                    <img src="https://raw.githubusercontent.com/agelmet/SOFIA/refs/heads/main/seps.jpg" class="h-20 object-contain mix-blend-multiply" alt="ΣΕΨ">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6991729a0084982bf3a1775e.jpg" class="h-20 object-contain mix-blend-multiply" alt="ΙΕΘΣ">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6991729936a3920c36632d8c.jpg" class="h-20 object-contain mix-blend-multiply" alt="Εταιρεία Γνωσιακών">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trust" class="py-24 bg-primary text-sand relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-terracotta/5 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="font-serif text-4xl md:text-5xl greek-caps">ΓΙΑΤΙ ΝΑ ΜΕ ΕΠΙΛΕΞΕΤΕ</h2>
+            </div>
+
+            <div class="mb-16 fade-in-section bg-white/5 backdrop-blur-sm p-8 md:p-12 rounded-3xl border border-white/10 mx-auto max-w-5xl">
+                <h3 class="text-3xl font-serif mb-6 text-white text-center greek-caps text-terracotta">Τι ειναι η CBT;</h3>
+                <p class="text-sand/80 text-base md:text-lg leading-relaxed text-justify mb-10 font-light">
+                    Η Γνωσιακή – Συμπεριφορική Θεραπεία (ΓΣΘ) είναι μια ιδιαίτερα διαδεδομένη, εμπειρικά τεκμηριωμένη μορφή ψυχοθεραπείας, η οποία βρίσκει εφαρμογή σε ένα πλήθος προβλημάτων και ψυχικών διαταραχών. Χαρακτηρίζεται ως επί το πλείστον από την εστίαση στο παρόν και την επίλυση των προβλημάτων που απασχολούν τον θεραπευόμενο την περίοδο που ζητάει βοήθεια. Στόχος της θεραπείας είναι ο θεραπευόμενος, μέσα από την ενεργό συμμετοχή του και τη συνεργασία με τον θεραπευτή, να αναγνωρίσει και να κατανοήσει τον τρόπο που ο ίδιος ερμηνεύει τα γεγονότα της ζωής του, αλλά και τη σχέση ανάμεσα στις σκέψεις, τα συναισθήματα και τη συμπεριφορά του. Βασίζεται στα πορίσματα της βασικής ψυχολογικής έρευνας, σύμφωνα με τα οποία ο τρόπος που αντιλαμβανόμαστε τις καταστάσεις επηρεάζει τόσο τα συναισθήματά μας, όσο και τη συμπεριφορά μας. Βασική αρχή της προσέγγισης είναι ότι δεν είναι τα γεγονότα καθαυτά που καθορίζουν τον τρόπο που νιώθουμε, αλλά το πώς ο καθένας μας τα αντιλαμβάνεται. Σύμφωνα με μια δεύτερη βασική αρχή μεγάλο μέρος της ανθρώπινης συμπεριφοράς αποτελεί προϊόν μάθησης και επομένως μπορεί να τροποποιηθεί μέσα από μία νέα μαθησιακή διαδικασία.
+                </p>
+                <div class="flex flex-col items-center justify-center gap-6 border-t border-white/10 pt-8">
+                    <span class="text-terracotta uppercase tracking-widest text-sm font-bold">ΠΙΣΤΟΠΟΙΗΣΗ ΚΑΙ ΣΥΝΕΡΓΑΣΙΑ</span>
+                    <div class="flex flex-col md:flex-row gap-6 md:gap-12 text-center">
+                        <a href="https://www.ibrt.gr/" target="_blank" class="text-white hover:text-terracotta transition-colors underline underline-offset-4 decoration-white/30" onmouseenter="addHover()" onmouseleave="removeHover()">Ινστιτούτο Έρευνας και Θεραπείας της Συμπεριφοράς</a>
+                        <a href="https://cbt.edu.gr/erg/" target="_blank" class="text-white hover:text-terracotta transition-colors underline underline-offset-4 decoration-white/30" onmouseenter="addHover()" onmouseleave="removeHover()">Εταιρεία Γνωσιακών Συμπεριφοριστικών Σπουδών</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="fade-in-section bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/5 hover:border-terracotta/30 transition-colors duration-300 group text-center" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-terracotta rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="brain-circuit" class="text-white w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-serif mb-3 text-white greek-caps">ΕΠΙΣΤΗΜΟΝΙΚΗ ΕΞΕΙΔΙΚΕΥΣΗ CBT</h3>
+                    <p class="text-sand/70 text-sm leading-relaxed">
+                        Πιστοποιημένη εξειδίκευση στη Γνωσιακή - Συμπεριφορική Ψυχοθεραπεία.
+                    </p>
+                </div>
+
+                <div class="fade-in-section bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/5 hover:border-terracotta/30 transition-colors duration-300 group text-center" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="activity" class="text-white w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-serif mb-3 text-white greek-caps">ΚΛΙΝΙΚΗ ΕΜΠΕΙΡΙΑ ΑΙΧΜΗΣ</h3>
+                    <p class="text-sand/70 text-sm leading-relaxed">
+                        Πλούσια προϋπηρεσία σε μεγάλα δημόσια ιδρύματα (Γ.Ν.Α. "Γ. Γεννηματάς", Ψ.Ν.Α. "ΔΑΦΝΙ"), συμπεριλαμβανομένου του τμήματος θεραπειών ενηλίκων του ΙΕΘΣ.
+                    </p>
+                </div>
+
+                <div class="fade-in-section bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/5 hover:border-terracotta/30 transition-colors duration-300 group text-center" style="transition-delay: 300ms;">
+                    <div class="w-16 h-16 bg-terracotta rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="map-pin" class="text-white w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-serif mb-3 text-white greek-caps">ΚΕΝΤΡΙΚΗ ΤΟΠΟΘΕΣΙΑ</h3>
+                    <p class="text-sand/70 text-sm leading-relaxed">
+                        Εξαιρετικά προσβάσιμο σημείο, δίπλα στο Μέγαρο Μουσικής (Ιλίσια), για εύκολη πρόσβαση.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 px-6 bg-sand">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 fade-in-section text-center md:text-left">
+                <span class="text-secondary tracking-widest text-sm font-bold uppercase block mb-4 greek-caps">ΠΑΡΕΧΟΜΕΝΕΣ ΥΠΗΡΕΣΙΕΣ</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-primary greek-caps">ΠΩΣ ΜΠΟΡΩ ΝΑ ΒΟΗΘΗΣΩ</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card bg-white p-10 rounded-3xl border border-primary/5 fade-in-section relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-full transition-all duration-500 group-hover:bg-secondary/10"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <i data-lucide="brain" class="w-12 h-12 text-terracotta mb-6"></i>
+                        <h3 class="text-2xl font-serif text-primary mb-4 greek-caps">ΑΤΟΜΙΚΗ ΨΥΧΟΘΕΡΑΠΕΙΑ</h3>
+                        <p class="text-primary/70 mb-6 leading-relaxed flex-grow">
+                            Εντοπισμός και αντικατάσταση αρνητικών σκέψεων. Δομημένη διαδικασία εστιασμένη στο "εδώ και τώρα" για ανάκτηση ελέγχου και ηρεμίας μέσω της CBT.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="service-card bg-white p-10 rounded-3xl border border-primary/5 fade-in-section relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-terracotta/5 rounded-bl-full transition-all duration-500 group-hover:bg-terracotta/10"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <i data-lucide="camera" class="w-12 h-12 text-secondary mb-6"></i>
+                        <h3 class="text-2xl font-serif text-primary mb-4 greek-caps">ΣΥΝΕΔΡΙΑ ΜΕΣΩ ΒΙΝΤΕΟΚΛΗΣΗΣ</h3>
+                        <p class="text-primary/70 mb-6 leading-relaxed flex-grow">
+                            Συνεδρίες εξ αποστάσεως (online) με την ίδια επιστημονική προσέγγιση και αποτελεσματικότητα, προσαρμοσμένες στο πρόγραμμά σας.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="service-card bg-white p-10 rounded-3xl border border-primary/5 fade-in-section relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-full transition-all duration-500 group-hover:bg-secondary/10"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <i data-lucide="graduation-cap" class="w-12 h-12 text-terracotta mb-6"></i>
+                        <h3 class="text-2xl font-serif text-primary mb-4 greek-caps">ΦΟΙΤΗΤΙΚΗ ΜΕΡΙΜΝΑ</h3>
+                        <p class="text-primary/70 mb-6 leading-relaxed flex-grow">
+                            Ειδική μέριμνα και προνομιακή τιμολογιακή πολιτική για φοιτητές, αναγνωρίζοντας τις προκλήσεις και τις ανάγκες της ακαδημαϊκής περιόδου.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="space" class="py-24 bg-primary text-white overflow-hidden relative">
+        <div class="max-w-[1600px] mx-auto px-6">
+            <h2 class="text-center font-serif text-4xl mb-12 fade-in-section greek-caps">Ο ΧΩΡΟΣ</h2>
+            
+            <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden cursor-pointer fade-in-section" onclick="openModal(this)" data-src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433986bac245153f60ead.jpg">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433986bac245153f60ead.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Space Gallery">
+                </div>
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden cursor-pointer fade-in-section" onclick="openModal(this)" data-src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433981d5e044ba37f58b8.jpg">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433981d5e044ba37f58b8.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Space Gallery">
+                </div>
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden cursor-pointer fade-in-section" onclick="openModal(this)" data-src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6994339854da04d1e17651df.jpg">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6994339854da04d1e17651df.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Space Gallery">
+                </div>
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden cursor-pointer fade-in-section" onclick="openModal(this)" data-src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433986bac2479b8f60eb0.jpeg">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433986bac2479b8f60eb0.jpeg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Space Gallery">
+                </div>
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden cursor-pointer fade-in-section" onclick="openModal(this)" data-src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433981d5e04c5b07f58b9.jpg">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433981d5e04c5b07f58b9.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Space Gallery">
+                </div>
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden cursor-pointer fade-in-section" onclick="openModal(this)" data-src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69943398a9efde6361d33ba0.jpg">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69943398a9efde6361d33ba0.jpg" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="Space Gallery">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="imageModal" class="modal fixed inset-0 z-[100] bg-black/95 hidden items-center justify-center p-4" onclick="closeModal()">
+        <img id="modalImage" src="" alt="Full view" class="max-w-full max-h-[95vh] rounded shadow-2xl animate-scale-in object-contain">
+        <button class="absolute top-8 right-8 text-white hover:text-terracotta" onmouseenter="addHover()" onmouseleave="removeHover()">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+    </div>
+
+    <section id="reviews" class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 fade-in-section">
+                <div>
+                    <h2 class="font-serif text-4xl text-primary greek-caps">ΑΞΙΟΛΟΓΗΣΕΙΣ</h2>
+                </div>
+                <div class="flex items-center gap-2 mt-4 md:mt-0">
+                    <span class="text-2xl font-bold text-primary">5.0</span>
+                    <div class="flex text-yellow-600">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <span class="text-sm text-gray-500 ml-2">στο DoctorAnytime</span>
+                </div>
+            </div>
+
+            <div class="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar">
+                <div class="min-w-[300px] md:min-w-[400px] bg-sand p-8 rounded-2xl snap-center fade-in-section border border-secondary/10">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="font-bold text-primary greek-caps">ΑΘΑΝΑΣΙΟΣ</div>
+                        <div class="text-xs text-secondary">07 ΑΥΓ 2025</div>
+                    </div>
+                    <div class="flex text-yellow-600 mb-4 w-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-primary/80 italic">"Εξαιρετική επιστήμονας και άνθρωπος, ένιωσα την άνεση να μιλήσω και ότι ενδιαφέρεται να με βοηθήσει!"</p>
+                </div>
+                <div class="min-w-[300px] md:min-w-[400px] bg-sand p-8 rounded-2xl snap-center fade-in-section border border-secondary/10">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="font-bold text-primary">MARIA</div>
+                        <div class="text-xs text-secondary">26 ΜΑΡ 2025</div>
+                    </div>
+                     <div class="flex text-yellow-600 mb-4 w-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-primary/80 italic">"Με την κα. Διαμαντοπούλου εξ αρχής ένιωσα άνετα και ασφάλεια. Είναι προσιτή και σε κάθε μας συνεδρία δημιουργεί ένα περιβάλλον όπου μπορώ να μιλήσω ανοιχτά χωρίς να νιώθω πίεση."</p>
+                </div>
+                <div class="min-w-[300px] md:min-w-[400px] bg-sand p-8 rounded-2xl snap-center fade-in-section border border-secondary/10">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="font-bold text-primary greek-caps">ΕΛΕΝΗ</div>
+                        <div class="text-xs text-secondary">03 ΦΕΒ 2025</div>
+                    </div>
+                     <div class="flex text-yellow-600 mb-4 w-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-primary/80 italic">"Η Κα Διαμαντοπούλου με βοήθησε πολύ να διαχειριστώ το άγχος μου εξερευνώντας όλες τις πτυχές του... Είμαι πλήρως ικανοποιημένη."</p>
+                </div>
+                 <div class="min-w-[300px] md:min-w-[400px] bg-sand p-8 rounded-2xl snap-center fade-in-section border border-secondary/10">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="font-bold text-primary">KATERINA</div>
+                        <div class="text-xs text-secondary">03 ΦΕΒ 2025</div>
+                    </div>
+                     <div class="flex text-yellow-600 mb-4 w-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-primary/80 italic">"Εμπνέει εμπιστοσύνη και σε ακούει προσεκτικά. Μέσω των συνεδριών μας έχω βοηθηθεί πολύ και έχω ξαναβρεί τον εαυτό μου."</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <a href="https://www.doctoranytime.gr/d/Psychologos/diamantopoulou-sofia-2?utm_source=gmb&utm_medium=organic&utm_campaign=profile" target="_blank" class="text-terracotta border-b border-terracotta pb-1 hover:text-primary hover:border-primary transition-colors greek-caps">ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΕΣ ΚΡΙΤΙΚΕΣ</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-primary text-sand py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                         <img src="https://lh3.googleusercontent.com/p/AF1QipMsSfLtAJD04KqngQfad1kcvYVjxdLx46d4W1ko=s1360-w1360-h1020" class="w-10 h-10 rounded-full object-cover border border-secondary/30 opacity-80" alt="Footer Logo">
+                    </div>
+                    
+                    <div class="space-y-4 text-sand/70 text-sm font-light">
+                        <p class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="shrink-0 w-5 h-5 mt-1 text-terracotta"></i>
+                            <a href="https://maps.google.com/?q=Αλυός 9, Ιλίσια" target="_blank" class="hover:text-white transition-colors" onmouseenter="addHover()" onmouseleave="removeHover()">
+                                Αλυός 9, Ιλίσια - Μέγαρο Μουσικής<br>(3ος όροφος), Αττική
+                            </a>
+                        </p>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="phone" class="shrink-0 w-5 h-5 text-terracotta mt-0.5"></i>
+                            <div class="flex flex-col gap-1">
+                                <a href="tel:6980729003" class="hover:text-white transition-colors" onmouseenter="addHover()" onmouseleave="removeHover()">698 072 9003</a>
+                                <a href="tel:6986700907" class="hover:text-white transition-colors" onmouseenter="addHover()" onmouseleave="removeHover()">698 670 0907</a>
+                            </div>
+                        </div>
+                        <p class="flex items-center gap-3">
+                            <i data-lucide="clock" class="shrink-0 w-5 h-5 text-terracotta"></i>
+                            <span>ΔΕΥΤΕΡΑ - ΣΑΒΒΑΤΟ (ΚΑΤΟΠΙΝ ΡΑΝΤΕΒΟΥ)</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <h3 class="font-serif text-xl mb-2 greek-caps text-secondary">ΜΕΝΟΥ</h3>
+                    <a href="#about" class="text-sand/70 hover:text-terracotta transition-colors w-fit greek-caps">ΒΙΟΓΡΑΦΙΚΟ</a>
+                    <a href="#services" class="text-sand/70 hover:text-terracotta transition-colors w-fit greek-caps">ΥΠΗΡΕΣΙΕΣ</a>
+                    <a href="#trust" class="text-sand/70 hover:text-terracotta transition-colors w-fit greek-caps">ΓΙΑΤΙ ΝΑ ΜΕ ΕΠΙΛΕΞΕΤΕ</a>
+                    <a href="https://www.doctoranytime.gr/d/Psychologos/diamantopoulou-sofia-2?autobook=1&acdpid=78672&autobook-dpid=78672&utm_source=gmb&utm_medium=organic&utm_campaign=actionscenter&hl=en-GR" target="_blank" class="text-sand/70 hover:text-terracotta transition-colors w-fit greek-caps">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</a>
+                </div>
+
+                <div class="rounded-xl overflow-hidden h-48 opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 duration-500">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3144.5768541996767!2d23.7547000!3d37.9818000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd511e0c4573%3A0x6c1a8a2b5e0c4573!2sAlyos%209%2C%20Athina%20115%2028!5e0!3m2!1sen!2sgr!4v1647856723456!5m2!1sen!2sgr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-sand/40">
+                <p>© 2026 ΣΟΦΙΑ ΔΙΑΜΑΝΤΟΠΟΥΛΟΥ. ALL RIGHTS RESERVED.</p>
+                <p class="flex items-center gap-1">
+                    DESIGNED BY <a href="https://advonmedia.com" target="_blank" class="text-terracotta hover:text-white transition-colors" onmouseenter="addHover()" onmouseleave="removeHover()">ADVON MEDIA</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        function addHover() { document.body.classList.add('hovering'); }
+        function removeHover() { document.body.classList.remove('hovering'); }
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) mobileMenu.classList.remove('translate-x-full');
+            else mobileMenu.classList.add('translate-x-full');
+        });
+
+        function closeMenu() {
+            isMenuOpen = false;
+            mobileMenu.classList.add('translate-x-full');
+        }
+
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/90', 'shadow-sm', 'py-2');
+                navbar.classList.remove('bg-transparent', 'py-4');
+            } else {
+                navbar.classList.remove('bg-white/90', 'shadow-sm', 'py-2');
+                navbar.classList.add('bg-transparent', 'py-4');
+            }
+        });
+
+        // Intersections
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => observer.observe(section));
+
+        // Modal Logic
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        function openModal(element) {
+            const src = element.getAttribute('data-src');
+            modalImg.src = src;
+            modal.classList.remove('hidden');
+            setTimeout(() => { modal.classList.add('open'); }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+            setTimeout(() => { modal.classList.add('hidden'); modalImg.src = ''; }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+        });
+    </script>
+</body>
+</html>
